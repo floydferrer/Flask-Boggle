@@ -6,6 +6,7 @@
     <title>Boggle</title>
 </head>
 <body>
+<p id="result"></p>
 {% block content %}
 <h1>    
     <ul>
@@ -14,7 +15,7 @@
         {% endfor %}
     </ul>
 </h1>
-<form id="guess-form" method="POST">
+<form id="guess-form">
     <input type="text" placeholder="Guess a word" id="guess" required>
     <button>Submit</button>
 </form>

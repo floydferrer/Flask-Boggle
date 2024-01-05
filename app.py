@@ -19,7 +19,8 @@ def reset_board():
 
 @app.route('/boggle')
 def display_board():
-    board = session['board']
+    board = boggle_game.make_board()
+    session['board'] = board
     return render_template('boggle.html', board=board)
 
 @app.route('/words', methods=['POST'])
@@ -28,9 +29,9 @@ def display_words():
     word_list = boggle_game.words
     return render_template('words.html', word_list=word_list)
 
-@app.route('/floyd', methods=['POST'])
+@app.route('/floyd', methods = ['GET'] )
 def show_word():
     board = session['board']
     word = request.args['word']
-    answer = Boggle.check_valid_word(board, word)
+    answer = Boggle().check_valid_word(board, word)
     return jsonify({'result': answer})
