@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .hidden {
+            display:none;
+        }
+    </style>
     <title>Boggle</title>
+
 </head>
 <body>
+<p>Timer: <span id="count-down">60</span></p>
+<button id="reset-game">Start Game</button>
 <p id="result"></p>
 {% block content %}
 <h1>    
@@ -15,9 +23,10 @@
         {% endfor %}
     </ul>
 </h1>
-<form id="guess-form">
-    <input type="text" placeholder="Guess a word" id="guess" required>
-    <button>Submit</button>
+<p>Score: <span id="points"></span></p>
+<form id="guess-form" >
+    <input type="text" placeholder="Guess a word" id="guess" required disabled>
+    <button id="submit-guess" disabled>Submit</button>
 </form>
 {% endblock %}
 <script src="http://unpkg.com/jquery"></script>
