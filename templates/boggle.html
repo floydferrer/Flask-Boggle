@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boggle</title>
+    <link rel="stylesheet" href="/static/app.css">
 </head>
+
 <body>
-{% block content %}
-<h1>    
-    <ul>
-        {% for row in board %}
-            <li>{{row}}</li>
-        {% endfor %}
-    </ul>
-</h1>
-<form id="guess-form" method="POST">
-    <input type="text" placeholder="Guess a word" id="guess" required>
-    <button>Submit</button>
-</form>
-{% endblock %}
-<script src="http://unpkg.com/jquery"></script>
-<script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
-<script src="/static/app.js"></script>
+    {% block content %}
+    <h1 id="title">Boggle</h1>
+    <h2 id="timer">Begin!</h2>
+    <h2 id="score">Score: 0</h2>
+    <h1 id="boggle">
+        <ul id="boggle-board">
+            {% for row in board %}
+            <li class="row">
+                {% for char in row %}
+                <span class="char">{{ char }}</span>
+                {% endfor %}
+            </li>
+            {% endfor %}
+        </ul>
+    </h1>
+    <form id="guess-form" method="POST">
+        <input type="text" placeholder="Guess a word" id="guess-btn" required minlength="2">
+        <button id="submit">Submit</button>
+        <button id="restart" onclick="window.location.href='/restart';">Restart</button>
+    </form>
+    <h3 id="highscore">
+        High Score: {{ highscore }}
+    </h3>
+    <h3 id="attempts">Attempts: {{ nplays }}</h3>
+    <p id="result"></p>
+
+    {% endblock %}
+    <script> </script>
+    <script src="http://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+    <script src="/static/app.js"></script>
 </body>
+
 </html>

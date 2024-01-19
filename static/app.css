@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#title,
+#timer,
+#score,
+#highscore,
+#attempts,
+#guess-form,
+#result {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+#boggle {
+    display: inline-flex;
+    justify-content: center;
+}
+
+#boggle-board {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+    border-top: 2px;
+    border-top-style: solid;
+    border-left: 2px;
+    border-left-style: solid;
+}
+
+.row {
+    display: flex;
+    width: 600px;
+}
+
+.char {
+    display: inline-block;
+    width: 100%;
+    border-right: 2px;
+    border-right-style: solid;
+    border-bottom: 2px;
+    border-bottom-style: solid;
+}
