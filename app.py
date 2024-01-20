@@ -34,7 +34,6 @@ def display_board():
 
 @app.route('/words', methods=['POST'])
 def display_words():
-    guess = request.form['guess']
     word_list = boggle_game.words
     return render_template('words.html', word_list=word_list)
 
