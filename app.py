@@ -10,32 +10,24 @@ debug = DebugToolbarExtension(app)
 
 boggle_game = Boggle()
 
-@app.route('/start-game')
-def create_board():
-    session['board'] = []
-    session['highscore'] = 0
-    session['nplays'] = 0
-    board = boggle_game.make_board()
-    print(board)
-    session['board'] = board
-    return redirect('/boggle')
-
 @app.route('/restart')
 def reset_board():
     session['board'] = []
     board = boggle_game.make_board()
     print(board)
     session['board'] = board
-    return redirect('/boggle')
+    return render_template('boggle.html', board=session['board'], highscore=session['highscore'], nplays=session['nplays'])
 
 @app.route('/boggle')
 def display_board():
+    try:
+        session['board']
+    except:
+        board = boggle_game.make_board()
+        session['board'] = board
+        session['highscore'] = 0
+        session['nplays'] = 0
     return render_template('boggle.html', board=session['board'], highscore=session['highscore'], nplays=session['nplays'])
-
-@app.route('/words', methods=['POST'])
-def display_words():
-    word_list = boggle_game.words
-    return render_template('words.html', word_list=word_list)
 
 @app.route('/check', methods=['GET'])
 def show_word():

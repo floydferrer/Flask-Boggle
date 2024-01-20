@@ -1,8 +1,9 @@
 const $timer = $('#timer');
 const $score = $('#score');
 const $guessForm = $('#guess-form');
-const $guessButton = $('#guess-btn');
+const $guessField = $('#guess-field');
 const $submit = $('#submit');
+const $restart = $('#restart');
 const $result = $('#result');
 const $words = $('#words');
 const correctWords = [];
@@ -28,6 +29,12 @@ $guessForm.on('submit', async function handleSubmit(evt){
     }
 });
 
+async function restart(){
+    await axios("/restart");
+}
+
+$restart.on('click', restart)
+
 async function scoreGame(){
     const response = await axios.post("/stats", { score: score });
     if (response.data.brokeRecord){
@@ -38,7 +45,7 @@ async function scoreGame(){
 }
 
 function handleTimer(){
-    let counter = 60;
+    let counter = 10;
     let intervalId = setInterval(() => {
         if (counter >= 1) {
             counter --;
@@ -53,7 +60,7 @@ function handleTimer(){
 
 function disableForm(value) {
     $guessForm[0][0].value = "";
-    $guessButton.attr('disabled', value);
+    $guessField.attr('disabled', value);
     $submit.attr('disabled', value);
 }
 
